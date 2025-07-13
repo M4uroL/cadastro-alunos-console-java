@@ -1,0 +1,69 @@
+
+// importando todos os elementos do java util
+import java.util.*;
+
+// Criando nossa classe e os atributos
+public class Aluno {
+    String nome;
+    int idade;
+
+    //criando nosso construtor
+    public Aluno(String nome, int idade) {
+        this.nome = nome;
+        this.idade = idade;
+    }
+
+    // Método para exibir os dados do aluno
+    public void mostrarDados() {
+        System.out.println("Nome: " + nome + ", Idade: " + idade);
+    }
+}
+
+
+// Criando nosso Main
+public class SistemaCadastro {
+    public static void main(String[] args) {
+        
+        Scanner entrada = new Scanner(System.in);  // usamos o scanner para entrada de dados
+        
+        List<Aluno> lista = new ArrayList<>();      // Criando nosso ArrayList para armazenar alunos
+
+        int opcao = 0;
+
+        // Nosso menu
+        while(opcao != 3) {
+            System.out.println("\n1 - Adicionar Aluno");
+            System.out.println("2 - Listar Alunos");
+            System.out.println("3 - Sair");
+            System.out.print("Escolha: ");
+            opcao = entrada.nextInt();
+
+            // Criando nossa condição para escolha
+            if(opcao == 1) {
+                System.out.print("Nome: ");
+                entrada.nextLine(); 
+                String nome = entrada.nextLine();
+
+                System.out.print("Idade: ");
+                int idade = entrada.nextInt();
+
+                Aluno aluno = new Aluno(nome, idade); // Cria aluno
+                lista.add(aluno);                     // Adiciona à lista
+
+                System.out.println("Aluno adicionado!");
+            } else if(opcao == 2) {
+                System.out.println("\n--- Lista de Alunos ---");
+                for(Aluno aluno : lista) {
+                    aluno.mostrarDados();
+                }
+            } else if(opcao == 3) {
+                System.out.println("Encerrando...");
+            } else {
+                System.out.println("Opção inválida!");
+            }
+        }
+
+        entrada.close();
+    }
+}
+
